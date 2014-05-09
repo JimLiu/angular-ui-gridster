@@ -1,0 +1,43 @@
+<!doctype html>
+<html ng-app="app">
+  <head>
+    <title>Angular-UI-Gridster Examples</title>
+    <!-- Gridster base styles -->
+    <link rel="stylesheet" href="bower_components/gridster/dist/jquery.gridster.css">
+    <link rel="stylesheet" href="demo.css">
+  </head>
+  <body ng-controller="DemoCtrl">
+
+    <div class="gridster">
+      <ul ui-gridster="gridsterOptions">
+        <li ui-gridster-item="item" ng-repeat="item in items">Widget</li>
+      </ul>
+    </div>
+    <div>
+      {{items | json}}
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/gridster/dist/jquery.gridster.js"></script>
+
+    <script src="dist/angular-ui-gridster.js"></script>
+
+    <script>
+      angular.module('app', ['ui.gridster'])
+        .controller('DemoCtrl', function($scope) {
+          $scope.gridsterOptions = {
+            resize: {
+              enabled: true
+            }
+          };
+
+          $scope.items = [
+            { width: 1, height: 1, row: 1, col: 1 },
+            { width: 2, height: 2, row: 1, col: 2 },
+            { width: 2, height: 1, row: 1, col: 3 }
+          ];
+        });
+    </script>
+  </body>
+</html>

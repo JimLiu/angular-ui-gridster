@@ -1,0 +1,36 @@
+{
+  "name": "Angular-UI-Gridster",
+  "version": "0.1.0",
+  "homepage": "https://github.com/JimLiu/angular-ui-gridster",
+  "authors": [
+    "Jim Liu <junminliu@gmail.com>"
+  ],
+  "description": "Gridster for Angularjs",
+  "main": "dist/angular-ui-gridster.js",
+  "keywords": [
+    "angular",
+    "gridster",
+    "jquery"
+  ],
+  "dependencies": {
+    "angular": ">= 1.2.0",
+    "gridster": "*",
+    "jquery": "*"
+  },
+  "devDependencies": {
+    "angular": "~1.2.13",
+    "bootstrap": "~3.1.0",
+    "jquery": "*",
+    "angular-mocks": "~1.2.13",
+    "angular-resource": "~1.2.13"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/components",
+    "src/sass",
+    "test",
+    "tests"
+  ]
+}
