@@ -7,14 +7,25 @@
     <link rel="stylesheet" href="demo.css">
   </head>
   <body ng-controller="DemoCtrl">
-
-    <div class="gridster">
-      <ul ui-gridster="gridsterOptions">
-        <li ui-gridster-item="item" ng-repeat="item in items">Widget</li>
-      </ul>
-    </div>
+    <section class="demo">
+      <button ng-click="addWidget()">Add Widget</button>
+      <div class="gridster">
+        <ul ui-gridster="gridsterOptions" ng-model="items">
+          <li data-id="{{item.id}}" ng-repeat="item in items" ui-gridster-item="item">
+            <div>Widget {{item.id}}</div>
+            <div>{{item.width}} x {{item.height}}</div>
+            <div>{{item.row}} . {{item.col}}</div>
+            <button ng-click="remove(this)">remove me</button>
+            <button ng-click="increaseSize(this)">increase Size</button>
+            <button ng-click="decreaseSize(this)">decrease Size</button>
+            <button ng-click="serialize(this)">serialize</button>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <div>{{gridsterJson}}</div>
     <div>
-      {{items | json}}
+      <pre>{{items | json}}</pre>
     </div>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -22,22 +33,7 @@
     <script src="bower_components/gridster/dist/jquery.gridster.js"></script>
 
     <script src="dist/angular-ui-gridster.js"></script>
+    <script src="js/basic.js"></script>
 
-    <script>
-      angular.module('app', ['ui.gridster'])
-        .controller('DemoCtrl', function($scope) {
-          $scope.gridsterOptions = {
-            resize: {
-              enabled: true
-            }
-          };
-
-          $scope.items = [
-            { width: 1, height: 1, row: 1, col: 1 },
-            { width: 2, height: 2, row: 1, col: 2 },
-            { width: 2, height: 1, row: 1, col: 3 }
-          ];
-        });
-    </script>
   </body>
 </html>

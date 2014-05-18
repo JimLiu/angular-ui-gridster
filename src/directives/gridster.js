@@ -3,13 +3,14 @@
   'use strict';
 
   angular.module('ui.gridster')
-    .directive('uiGridster', ['uiGridsterConfig',
-      function(uiGridsterConfig) {
+    .directive('uiGridster', ['uiGridsterConfig', '$timeout',
+      function(uiGridsterConfig, $timeout) {
         return {
           restrict: 'A',
           scope: true,
           controller: 'GridsterController',
-          link: function(scope, element, attrs) {
+          require: 'ngModel',
+          link: function(scope, element, attrs, ngModel) {
             var options = {
               draggable: {},
               resize: {}
@@ -28,32 +29,21 @@
             }
 
             options.draggable.stop = function(event, ui) {
-              var itemscope = angular.element(ui.$helper).scope();
-              if (itemscope) {
-                var item = itemscope.gridsterItem;
-                var grid = ui.$helper.coords().grid;
-                if (item.col != grid.col || item.row != grid.row) {
-                  itemscope.$apply(function() {
-                    item.col = grid.col;
-                    item.row = grid.row;
-                  });
-                }
-              }
+              scope.$apply();
             };
 
             options.resize.stop = function(event, ui, $widget) {
-              var itemscope = angular.element(ui.$helper).scope();
-              if (itemscope) {
-                var item = itemscope.gridsterItem;
-                var grid = $widget.coords().grid;
-                if (item.width != grid.size_x || item.height != grid.size_y) {
-                  itemscope.$apply(function () {
-                    item.width = grid.size_x;
-                    item.height = grid.size_y;
-                  });
-                }
-              }
+              scope.$apply();
             };
+
+            if (ngModel) {
+              ngModel.$render = function() {
+                if (!ngModel.$modelValue || !angular.isArray(ngModel.$modelValue)) {
+                  scope.$modelValue = [];
+                }
+                scope.$modelValue = ngModel.$modelValue;
+              };
+            }
 
             attrs.$observe('uiGridster', function(val) {
               var gval = scope.$eval(val);
@@ -73,8 +63,24 @@
                   }
                 }
                 angular.extend(options, gval);
+                gridster = scope.init(element, options);
+
+                scope.$watch(function() {
+                  var s = gridster.serialize();
+                  return JSON.stringify(s);
+                }, function(val) {
+                  if (val) {
+                    var items = JSON.parse(val);
+                    angular.forEach(items, function(item, index) {
+                      var widget = scope.$modelValue[index];
+                      widget.width = item.size_x;
+                      widget.height = item.size_y;
+                      widget.row = item.row;
+                      widget.col = item.col;
+                    });
+                  }
+                });
               }
-              gridster = scope.init(element, options);
             });
           }
         };

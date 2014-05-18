@@ -11,22 +11,31 @@
           link: function(scope, element, attrs, controller) {
             var gridsterItem = null;
             element.addClass('ui-gridster-item');
+            scope.gridsterItem = null;
             attrs.$observe('uiGridsterItem', function(val) {
               var ival = scope.$eval(val);
               if((typeof ival) == 'object') {
                 gridsterItem = ival;
                 scope.gridsterItem = gridsterItem;
-                scope.widget = controller.addItem(element, ival.width, ival.height, ival.col, ival.row);
+                controller.addItem(element, gridsterItem.width, gridsterItem.height,
+                    gridsterItem.col, gridsterItem.row);
               }
             });
 
+            scope.$remove = function() {
+              element.remove();
+            };
+
             element.bind('$destroy', function() {
-              controller.removeItem(element);
+              controller.removeItem(element, scope.$index);
             });
 
             scope.$watchCollection('[gridsterItem.width, gridsterItem.height]', function(newValues) {
-              controller.resizeItem(scope.widget, newValues[0], newValues[1]);
+              if (newValues[0] && newValues[1]) {
+                controller.resizeItem(element, newValues[0], newValues[1]);
+              }
             });
+
           }
         };
       }

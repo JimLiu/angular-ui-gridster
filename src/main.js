@@ -11,7 +11,7 @@
     .constant('uiGridsterConfig', {
       widget_margins: [5, 5],
       widget_base_dimensions: [100, 55],
-      widget_selector: 'ui-gridster-item',
+      widget_selector: '.ui-gridster-item',
       resize: {
         enabled: true
       }
