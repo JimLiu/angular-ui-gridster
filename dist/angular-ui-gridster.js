@@ -9,11 +9,11 @@
 
   angular.module('ui.gridster', [])
     .constant('uiGridsterConfig', {
-      widget_margins: [5, 5],
-      widget_base_dimensions: [100, 55],
+      widget_margins: [10, 10],
+      widget_base_dimensions: [100, 100],
       widget_selector: '.ui-gridster-item',
       resize: {
-        enabled: true
+        enabled: false
       }
     });
 
@@ -27,6 +27,7 @@
     function($scope, $element, $attrs) {
       this.scope = $scope;
       this.element = $element;
+      $scope.$dragEnabled = true;
       $scope.$modelValue = null;
       var gridster = null;
       $scope.init = function(element, options) {
@@ -157,6 +158,24 @@
                     });
                   }
                 });
+              }
+            });
+
+            scope.$watch(function() {
+              return scope.$eval(attrs.gridsterDragEnabled);
+            }, function(val) {
+              if((typeof val) == "boolean") {
+                console.log('gridsterDragEnabled', val);
+                scope.$dragEnabled = val;
+                if (!gridster) {
+                  return;
+                }
+                if (val) {
+                  gridster.enable();
+                }
+                else {
+                  gridster.disable();
+                }
               }
             });
           }

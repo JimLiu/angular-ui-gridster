@@ -7,6 +7,7 @@
     function($scope, $element, $attrs) {
       this.scope = $scope;
       this.element = $element;
+      $scope.$dragEnabled = true;
       $scope.$modelValue = null;
       var gridster = null;
       $scope.init = function(element, options) {

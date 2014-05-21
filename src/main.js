@@ -9,11 +9,11 @@
 
   angular.module('ui.gridster', [])
     .constant('uiGridsterConfig', {
-      widget_margins: [5, 5],
-      widget_base_dimensions: [100, 55],
+      widget_margins: [10, 10],
+      widget_base_dimensions: [100, 100],
       widget_selector: '.ui-gridster-item',
       resize: {
-        enabled: true
+        enabled: false
       }
     });
 

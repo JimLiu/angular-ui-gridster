@@ -6,13 +6,14 @@
         widget_selector: '.gridster > ul > li',
         min_cols: 6,
         resize: {
-            enabled: true
-        },
-        collision: {
-          on_overlap: function(collider_data) {
-            //console.log('on_overlap', collider_data);
-          }
+          enabled: true
         }
+      };
+
+      $scope.dragEnabled = true;
+
+      $scope.toggleDragging = function() {
+        $scope.dragEnabled = !$scope.dragEnabled;
       };
 
       $scope.addWidget = function() {

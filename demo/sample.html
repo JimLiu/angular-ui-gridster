@@ -9,8 +9,12 @@
   <body ng-controller="DemoCtrl">
     <section class="demo">
       <button ng-click="addWidget()">Add Widget</button>
+      <button ng-click="toggleDragging()">
+        <span ng-if="!dragEnabled">Enable Dragging</span>
+        <span ng-if="dragEnabled">Disable Dragging</span>
+      </button>
       <div class="gridster">
-        <ul ui-gridster="gridsterOptions" ng-model="items">
+        <ul ui-gridster="gridsterOptions" data-gridster-drag-enabled="dragEnabled" ng-model="items">
           <li data-id="{{item.id}}" ng-repeat="item in items" ui-gridster-item="item">
             <div>Widget {{item.id}}</div>
             <div>{{item.width}} x {{item.height}}</div>
