@@ -17,17 +17,15 @@
               if((typeof ival) == 'object') {
                 gridsterItem = ival;
                 scope.gridsterItem = gridsterItem;
-                controller.addItem(element, gridsterItem.width, gridsterItem.height,
+                var placeHolder = $('<li></li>');
+                element.replaceWith(placeHolder);
+                var elm = controller.addItem(element, gridsterItem.width, gridsterItem.height,
                     gridsterItem.col, gridsterItem.row);
+                placeHolder.replaceWith(elm);
+                elm.bind('$destroy', function() {
+                  controller.removeItem(element);
+                });
               }
-            });
-
-            scope.$remove = function() {
-              element.remove();
-            };
-
-            element.bind('$destroy', function() {
-              controller.removeItem(element, scope.$index);
             });
 
             scope.$watchCollection('[gridsterItem.width, gridsterItem.height]', function(newValues) {

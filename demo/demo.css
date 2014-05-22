@@ -47,12 +47,60 @@ a {
 }
 
 
-/* Gridster styles */
+button {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #428bca;
+    border-color: #357ebd;
+}
+
+/* Demo Page */
 .demo {
     margin: 3em 0;
-    padding: 7.5em 0 5.5em;
+    padding: 0.5em 0 0.5em;
     background: #004756;
 }
+
+.gridster-control {
+    width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Gridster styles */
 
 .gridster {
     width: 960px;

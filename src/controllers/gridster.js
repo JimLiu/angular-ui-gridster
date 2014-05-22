@@ -22,13 +22,12 @@
         return null;
       };
 
-      this.removeItem = function(element, index) {
+      this.removeItem = function(element) {
         if (gridster) {
           gridster.remove_widget(element, function() {
             $scope.$apply();
           });
         }
-        $scope.$modelValue.splice(index, 1);
       };
 
       this.resizeItem = function(widget, width, height) {

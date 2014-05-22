@@ -87,7 +87,6 @@
               return scope.$eval(attrs.gridsterDragEnabled);
             }, function(val) {
               if((typeof val) == "boolean") {
-                console.log('gridsterDragEnabled', val);
                 scope.$dragEnabled = val;
                 if (!gridster) {
                   return;

@@ -1,5 +1,5 @@
 /**
- * @license Angular UI Gridster v0.2.0
+ * @license Angular UI Gridster v0.3.0
  * (c) 2010-2014. https://github.com/JimLiu/angular-ui-gridster
  * License: MIT
  */
@@ -42,13 +42,12 @@
         return null;
       };
 
-      this.removeItem = function(element, index) {
+      this.removeItem = function(element) {
         if (gridster) {
           gridster.remove_widget(element, function() {
             $scope.$apply();
           });
         }
-        $scope.$modelValue.splice(index, 1);
       };
 
       this.resizeItem = function(widget, width, height) {
@@ -165,7 +164,6 @@
               return scope.$eval(attrs.gridsterDragEnabled);
             }, function(val) {
               if((typeof val) == "boolean") {
-                console.log('gridsterDragEnabled', val);
                 scope.$dragEnabled = val;
                 if (!gridster) {
                   return;
@@ -205,17 +203,15 @@
               if((typeof ival) == 'object') {
                 gridsterItem = ival;
                 scope.gridsterItem = gridsterItem;
-                controller.addItem(element, gridsterItem.width, gridsterItem.height,
+                var placeHolder = $('<li></li>');
+                element.replaceWith(placeHolder);
+                var elm = controller.addItem(element, gridsterItem.width, gridsterItem.height,
                     gridsterItem.col, gridsterItem.row);
+                placeHolder.replaceWith(elm);
+                elm.bind('$destroy', function() {
+                  controller.removeItem(element);
+                });
               }
-            });
-
-            scope.$remove = function() {
-              element.remove();
-            };
-
-            element.bind('$destroy', function() {
-              controller.removeItem(element, scope.$index);
             });
 
             scope.$watchCollection('[gridsterItem.width, gridsterItem.height]', function(newValues) {

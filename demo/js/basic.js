@@ -34,7 +34,11 @@
       };
 
       $scope.remove = function(item) {
-        item.$remove();
+        console.log('before remove', $scope.items);
+        var index = $scope.items.indexOf(item);
+        if (index > -1) {
+          $scope.items.splice(index, 1);
+        }
       };
 
       $scope.increaseSize = function(item) {
