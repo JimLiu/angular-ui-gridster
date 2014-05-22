@@ -26,6 +26,27 @@
                 widget.bind('$destroy', function() {
                   controller.removeItem(widget);
                 });
+
+                scope.$watch(function() {
+                  return widget.attr('data-col');
+                }, function(val) {
+                  gridsterItem.col = parseInt(val);
+                });
+                scope.$watch(function() {
+                  return widget.attr('data-row');
+                }, function(val) {
+                  gridsterItem.row = parseInt(val);
+                });
+                scope.$watch(function() {
+                  return widget.attr('data-sizex');
+                }, function(val) {
+                  gridsterItem.width = parseInt(val);
+                });
+                scope.$watch(function() {
+                  return widget.attr('data-sizey');
+                }, function(val) {
+                  gridsterItem.height = parseInt(val);
+                });
               }
             });
 

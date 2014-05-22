@@ -1,5 +1,5 @@
 /**
- * @license Angular UI Gridster v0.3.0
+ * @license Angular UI Gridster v0.4.0
  * (c) 2010-2014. https://github.com/JimLiu/angular-ui-gridster
  * License: MIT
  */
@@ -141,22 +141,6 @@
                 }
                 angular.extend(options, gval);
                 gridster = scope.init(element, options);
-
-                scope.$watch(function() {
-                  var s = gridster.serialize();
-                  return JSON.stringify(s);
-                }, function(val) {
-                  if (val) {
-                    var items = JSON.parse(val);
-                    angular.forEach(items, function(item, index) {
-                      var widget = scope.$modelValue[index];
-                      widget.width = item.size_x;
-                      widget.height = item.size_y;
-                      widget.row = item.row;
-                      widget.col = item.col;
-                    });
-                  }
-                });
               }
             });
 
@@ -211,6 +195,27 @@
                 placeHolder.replaceWith(widget);
                 widget.bind('$destroy', function() {
                   controller.removeItem(widget);
+                });
+
+                scope.$watch(function() {
+                  return widget.attr('data-col');
+                }, function(val) {
+                  gridsterItem.col = parseInt(val);
+                });
+                scope.$watch(function() {
+                  return widget.attr('data-row');
+                }, function(val) {
+                  gridsterItem.row = parseInt(val);
+                });
+                scope.$watch(function() {
+                  return widget.attr('data-sizex');
+                }, function(val) {
+                  gridsterItem.width = parseInt(val);
+                });
+                scope.$watch(function() {
+                  return widget.attr('data-sizey');
+                }, function(val) {
+                  gridsterItem.height = parseInt(val);
                 });
               }
             });

@@ -64,22 +64,6 @@
                 }
                 angular.extend(options, gval);
                 gridster = scope.init(element, options);
-
-                scope.$watch(function() {
-                  var s = gridster.serialize();
-                  return JSON.stringify(s);
-                }, function(val) {
-                  if (val) {
-                    var items = JSON.parse(val);
-                    angular.forEach(items, function(item, index) {
-                      var widget = scope.$modelValue[index];
-                      widget.width = item.size_x;
-                      widget.height = item.size_y;
-                      widget.row = item.row;
-                      widget.col = item.col;
-                    });
-                  }
-                });
               }
             });
 
