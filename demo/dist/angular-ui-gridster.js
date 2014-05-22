@@ -196,6 +196,7 @@
           require: '^uiGridster',
           link: function(scope, element, attrs, controller) {
             var gridsterItem = null;
+            var widget = element;
             element.addClass('ui-gridster-item');
             scope.gridsterItem = null;
             attrs.$observe('uiGridsterItem', function(val) {
@@ -205,18 +206,18 @@
                 scope.gridsterItem = gridsterItem;
                 var placeHolder = $('<li></li>');
                 element.replaceWith(placeHolder);
-                var elm = controller.addItem(element, gridsterItem.width, gridsterItem.height,
+                var widget = controller.addItem(element, gridsterItem.width, gridsterItem.height,
                     gridsterItem.col, gridsterItem.row);
-                placeHolder.replaceWith(elm);
-                elm.bind('$destroy', function() {
-                  controller.removeItem(element);
+                placeHolder.replaceWith(widget);
+                widget.bind('$destroy', function() {
+                  controller.removeItem(widget);
                 });
               }
             });
 
             scope.$watchCollection('[gridsterItem.width, gridsterItem.height]', function(newValues) {
               if (newValues[0] && newValues[1]) {
-                controller.resizeItem(element, newValues[0], newValues[1]);
+                controller.resizeItem(widget, newValues[0], newValues[1]);
               }
             });
 
