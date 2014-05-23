@@ -22,7 +22,7 @@
         var newItem =
         {
           id: newId,
-          width: 2, height: 2, row: 1, col: 1
+          sizeX: 2, sizeY: 2, row: 1, col: 1
         };
         $scope.items.push(newItem);
       };
@@ -43,95 +43,95 @@
 
       $scope.increaseSize = function(item) {
         console.log('sizeIncrease', item);
-        item.gridsterItem.width++;
-        item.gridsterItem.height++;
+        item.gridsterItem.sizeX++;
+        item.gridsterItem.sizeY++;
       };
 
       $scope.decreaseSize = function(item) {
         console.log('sizeDecrease', item);
-        if (item.gridsterItem.width > 1) {
-          item.gridsterItem.width--;
+        if (item.gridsterItem.sizeX > 1) {
+          item.gridsterItem.sizeX--;
         }
-        if (item.gridsterItem.height > 1) {
-          item.gridsterItem.height--;
+        if (item.gridsterItem.sizeY > 1) {
+          item.gridsterItem.sizeY--;
         }
       };
 
       $scope.items = [
   {
     "id": 1,
-    "width": 2,
-    "height": 1,
+    "sizeX": 2,
+    "sizeY": 1,
     "row": 1,
     "col": 1
   },
   {
     "id": 2,
-    "width": 1,
-    "height": 1,
+    "sizeX": 1,
+    "sizeY": 1,
     "row": 1,
     "col": 3
   },
   {
     "id": 3,
-    "width": 2,
-    "height": 1,
+    "sizeX": 2,
+    "sizeY": 1,
     "row": 1,
     "col": 4
   },
   {
     "id": 4,
-    "width": 2,
-    "height": 2,
+    "sizeX": 2,
+    "sizeY": 2,
     "row": 2,
     "col": 1
   },
   {
     "id": 5,
-    "width": 1,
-    "height": 1,
+    "sizeX": 1,
+    "sizeY": 1,
     "row": 1,
     "col": 6
   },
   {
     "id": 6,
-    "width": 2,
-    "height": 1,
+    "sizeX": 2,
+    "sizeY": 1,
     "row": 2,
     "col": 3
   },
   {
     "id": 7,
-    "width": 1,
-    "height": 1,
+    "sizeX": 1,
+    "sizeY": 1,
     "row": 2,
     "col": 5
   },
   {
     "id": 8,
-    "width": 1,
-    "height": 1,
+    "sizeX": 1,
+    "sizeY": 1,
     "row": 3,
     "col": 3
   },
   {
     "id": 9,
-    "width": 1,
-    "height": 1,
+    "sizeX": 1,
+    "sizeY": 1,
     "row": 3,
     "col": 4
   },
   {
     "id": 10,
-    "width": 1,
-    "height": 1,
+    "sizeX": 1,
+    "sizeY": 1,
     "row": 3,
     "col": 5
   },
   {
     "id": 11,
-    "width": 1,
-    "height": 2,
+    "sizeX": 1,
+    "sizeY": 2,
     "row": 2,
     "col": 6
   }

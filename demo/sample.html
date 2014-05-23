@@ -22,7 +22,7 @@
         <ul ui-gridster="gridsterOptions" data-gridster-drag-enabled="dragEnabled" ng-model="items">
           <li data-id="{{item.id}}" ng-repeat="item in items" ui-gridster-item="item">
             <div>Widget {{item.id}}</div>
-            <div>{{item.width}} x {{item.height}}</div>
+            <div>{{item.sizeX}} x {{item.sizeY}}</div>
             <div>{{item.row}} . {{item.col}}</div>
             <button ng-click="remove(item)">remove me</button>
           </li>

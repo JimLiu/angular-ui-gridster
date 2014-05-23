@@ -15,9 +15,9 @@
         return gridster;
       };
 
-      this.addItem = function(element, width, height, col, row) {
+      this.addItem = function(element, sizeX, sizeY, col, row) {
         if (gridster) {
-          return gridster.add_widget(element, width, height, col, row);
+          return gridster.add_widget(element, sizeX, sizeY, col, row);
         }
         return null;
       };
@@ -30,9 +30,9 @@
         }
       };
 
-      this.resizeItem = function(widget, width, height) {
+      this.resizeItem = function(widget, sizeX, sizeY) {
         if (gridster && widget) {
-          gridster.resize_widget(widget, width, height);
+          gridster.resize_widget(widget, sizeX, sizeY);
         }
       };
 
@@ -45,8 +45,8 @@
         var items = gridster.serialize();
         angular.forEach(items, function(item, index) {
           var widget = $scope.$modelValue[index];
-          widget.width = item.size_x;
-          widget.height = item.size_y;
+          widget.sizeX = item.size_x;
+          widget.sizeY = item.size_y;
           widget.row = item.row;
           widget.col = item.col;
         });
