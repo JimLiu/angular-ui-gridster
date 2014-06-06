@@ -140,8 +140,8 @@
                   }
                 }
                 angular.extend(options, gval);
-                gridster = scope.init(element, options);
               }
+              gridster = scope.init(element, options);
             });
 
             scope.$watch(function() {
